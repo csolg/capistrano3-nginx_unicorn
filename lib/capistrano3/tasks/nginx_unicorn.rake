@@ -56,8 +56,9 @@ namespace :nginx do
     end
   end
 
-  after "deploy:check", "nginx:setup"
-  after "deploy:finished", "nginx:reload"
+  # after "deploy:check", "nginx:setup"
+  # after "deploy:finished", "nginx:reload"
+  after "unicorn:setup", "nginx:setup"
 
 end
 
@@ -75,7 +76,7 @@ namespace :unicorn do
     end
   end
 
-  after "deploy:check", "unicorn:setup"
+  # after "deploy:check", "unicorn:setup"
 
 end
 
@@ -100,7 +101,7 @@ task :logrotate do
   end
 end
 
-after "deploy:check", "logrotate"
+after "unicorn:setup", "logrotate"
 
 def template(template_name, target)
   config_file = "#{fetch(:templates_path)}/#{template_name}"
