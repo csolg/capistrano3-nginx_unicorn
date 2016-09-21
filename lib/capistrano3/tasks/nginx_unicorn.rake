@@ -58,7 +58,6 @@ namespace :nginx do
 
   # after "deploy:check", "nginx:setup"
   # after "deploy:finished", "nginx:reload"
-  after "unicorn:setup", "nginx:setup"
 
 end
 
